@@ -1,0 +1,5 @@
+"0","pars <- c('b0', 'b1', 'b2', 'var') # save parameter names"
+"0","results <- t(round(apply(samples1[, pars], 2, get_estimates), digits = 2)) "
+"0","colnames(results) <- c(""Mean"", ""SD"", ""MC error"", ""Lower"", ""Upper"")"
+"0","rownames(results) <- c(""Intercept"", ""Age"", ""Parental education"", ""Residual variance"")"
+"0","kable(results, digits = 2, caption = ""Estimates, standard deviations, MC errors and 95% central credibility intervals for the parameter values of Model 1"")"

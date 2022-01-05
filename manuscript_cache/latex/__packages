@@ -1,0 +1,8 @@
+base
+psych
+lattice
+gridExtra
+bain
+magrittr
+dplyr
+knitr
