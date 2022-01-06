@@ -31,6 +31,8 @@ The main research question that I will be answering is to what extent children�
 
 In addition to the model specified above, I will also consider a model with age and paternal education only (model 2), age and maternal education only (model 3), and a model with age and age squared (to account for a potential quadratic relationship between age and language proficiency; model 4). I will investigate which of these models describe the data best. If there is a very strong non-linear relationship between age and SRT, and the effect of age is much stronger than the effect of parental education, then I expect the model 4 to describe the data best. If maternal education is a much stronger predictor than paternal education or vice versa, we may also see a difference in the model fits of model 2 and 3. If maternal and paternal education have additive effects, I expect the first model to be better than either model 2 or 3.  
 
+
+
 ```{r load data, echo=F, message=F, warning=F}
 dat <- readRDS("profiency.rds")
 desc_dat <- describe(dat) # descriptive statistics
@@ -114,7 +116,7 @@ bf2 <- bain(m1, "c_age > 0.2", standardize = T)
 bf3 <- bain(m1, "c_age > c_educ", standardize = T)
 ```
 
-I used Bayes Factors (BFs) to (i) quantify the evidence that the effects of the predictors were meaningfully different from zero (defined as having a standardized effect of 0.2 or greater, conform the definition of a small effect by Cohen, 1992), and (ii) to investigate whether the standardized effect of age was greater than that of parental education. For calculating BFs, I used the R-package `bain` (Gu, Hoijtink, Mulder, & van Lissa, 2020). I computed all BFs twice, while setting a different seed, to ensure stability of the results. I tested the hypotheses “parental education > 0.2”, “age > 0.2” and “age > parental education” against their complements, and obtained BFs of `r round(bf1$fit$BF.c[1], digits =2)`, `r bf2$fit$BF.c[1]` and `r round(bf3$fit$BF.c[1], digits =0)`, respectively. Based on this, I conclude that there is overwhelming evidence for the hypothesis that the effect of age is meaningfully different from zero, and that the effect of age is greater than the effect of parental education. In contrast, there is no conclusive evidence that the effect of parental education is meaningfully different from zero.
+I used Bayes Factors (BFs) to (i) quantify the evidence that the effects of the predictors were meaningfully different from zero (defined as having a standardized effect of 0.2 or greater, conform the definition of a small effect by Cohen, 1992), and (ii) to investigate whether the standardized effect of age was greater than that of parental education. For calculating BFs, I used the R-package `bain` (Gu, Hoijtink, Mulder, & van Lissa, 2020). I computed all BFs twice, while setting a different seed, to ensure stability of the results. I tested the hypotheses “parental education > 0.2”, “age > 0.2” and “age > parental education” against their complements, and obtained BFs of `r round(bf1$fit$BF.c[1], digits =2)`, `r round(bf2$fit$BF.c[1], digits = 0)` and `r round(bf3$fit$BF.c[1], digits =0)`, respectively. Based on this, I conclude that there is overwhelming evidence for the hypothesis that the effect of age is meaningfully different from zero, and that the effect of age is greater than the effect of parental education. In contrast, there is no conclusive evidence that the effect of parental education is meaningfully different from zero.
 
 
 ## Posterior predictive check
